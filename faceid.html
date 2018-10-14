@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<title>人脸识别</title>
+	<link rel="shortcut icon" href="./favicon.ico" />
+  	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="./css/rec.css">
+	<link rel="stylesheet" href="./font/font-awesome-4.7.0/css/font-awesome.min.css">
+	<script src="./js/rec.js"></script>
+	    <style>
+        #face{
+            height: 300px;
+            width: 250px;
+            margin: 50px auto;
+        }
+        label{
+            margin-left: 35px;
+        }
+        #face ul li{
+            list-style: none;
+        }
+        .button{
+            margin: 10px 35px;
+            height: 30px;
+            width: 100px;
+            background: rgb(5, 255, 180);
+            border: 0px;
+            border-radius: 8px;
+            color: gray;
+            font-weight: bold;
+        }
+    </style>
+
+</head>
+<body>
+	<div class="contact" >
+			<form name="form2" action="check_img.php" method="post" enctype="multipart/form-data" target="_blank">
+                <ul>
+                    <li>
+                    
+						<h2 style="color:red;font-weight:bold;">面部图片上传</h2>
+						<p style="color:red;">注意事项:</p>
+						<p style="color:red;">必须使用前置摄像头识别<br> 否则会识别失败</p>
+                        <div id="divPreview">
+                            <img id="imgHeadPhoto" src="./images/noperson.jpg" style="width: 160px; height: 170px; border: solid 1px #d2e2e2;"alt="" />
+                        </div>
+                        <input  type="file" id="file" name="file" capture="camera" onchange="PreviewImage(this,'imgHeadPhoto','divPreview');" size="20" />
+                        <input class="button"  type="submit" value="开始面部识别"/>
+                    </li>
+                </ul>
+            </form>
+        </div>
+	 <script>
+            var file = document.querySelector('#file');
+            if (getIos()) {
+                file.removeAttribute("capture");
+            }
+            function getIos() {
+                var ua = navigator.userAgent.toLowerCase();
+                if (ua.match(/iPhone\sOS/i) == "iphone os") {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        </script>
+        <script type="text/javascript">
+            //js本地图片预览，兼容ie[6-9]、火狐、Chrome17+、Opera11+、Maxthon3
+            function PreviewImage(fileObj, imgPreviewId, divPreviewId) {
+                // 获取文件
+                var f = document.getElementById("file").files; 
+                //当前时间和上次修改时间 
+                var nowDate = new Date(+new Date()+8*3600*1000).toISOString().replace(/T/g,' ').replace(/\.[\d]{3}Z/,'');
+                nowDate = Date.parse(nowDate);
+                var fileDate = dateToStr(f[0].lastModifiedDate);
+                fileDate = Date.parse(f[0].lastModifiedDate);
+                 if(fileDate>nowDate+180000||fileDate<nowDate-180000){
+                     alert("请上传实时拍摄照片进行人脸识别！");
+                     window.location='faceid.html';
+                 }
+                //alert("当前时间"+nowDate);
+                //alert("上次修改时间" + fileDate); 
+                var allowExtention = ".jpg"; //允许上传文件的后缀名document.getElementById("hfAllowPicSuffix").value;
+                var extention = fileObj.value.substring(fileObj.value.lastIndexOf(".") + 1).toLowerCase();
+                var browserVersion = window.navigator.userAgent.toUpperCase();
+                if (allowExtention.indexOf(extention) > -1) {
+                    if (fileObj.files) {//HTML5实现预览，兼容chrome、火狐7+等
+                        if (window.FileReader) {
+                            var reader = new FileReader();
+                            reader.onload = function (e) {
+                                document.getElementById(imgPreviewId).setAttribute("src", e.target.result);
+                            }
+                            reader.readAsDataURL(fileObj.files[0]);
+                        } else if (browserVersion.indexOf("SAFARI") > -1) {
+                            alert("不支持Safari6.0以下浏览器的图片预览!");
+                        }
+                    } else if (browserVersion.indexOf("MSIE") > -1) {
+                        if (browserVersion.indexOf("MSIE 6") > -1) {//ie6
+                            document.getElementById(imgPreviewId).setAttribute("src", fileObj.value);
+                        } else {//ie[7-9]
+                            fileObj.select();
+                            if (browserVersion.indexOf("MSIE 9") > -1)
+                                fileObj.blur(); //不加上document.selection.createRange().text在ie9会拒绝访问
+                            var newPreview = document.getElementById(divPreviewId + "New");
+                            if (newPreview == null) {
+                                newPreview = document.createElement("div");
+                                newPreview.setAttribute("id", divPreviewId + "New");
+                                newPreview.style.width = document.getElementById(imgPreviewId).width + "px";
+                                newPreview.style.height = document.getElementById(imgPreviewId).height + "px";
+                                newPreview.style.border = "solid 1px #d2e2e2";
+                            }
+                            newPreview.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale',src='" + document.selection.createRange().text + "')";
+                            var tempDivPreview = document.getElementById(divPreviewId);
+                            tempDivPreview.parentNode.insertBefore(newPreview, tempDivPreview);
+                            tempDivPreview.style.display = "none";
+                        }
+                    } else if (browserVersion.indexOf("FIREFOX") > -1) {//firefox
+                        var firefoxVersion = parseFloat(browserVersion.toLowerCase().match(/firefox\/([\d.]+)/)[1]);
+                        if (firefoxVersion < 7) {//firefox7以下版本
+                            document.getElementById(imgPreviewId).setAttribute("src", fileObj.files[0].getAsDataURL());
+                        } else {//firefox7.0+                    
+                            document.getElementById(imgPreviewId).setAttribute("src", window.URL.createObjectURL(fileObj.files[0]));
+                        }
+                    } else {
+                        document.getElementById(imgPreviewId).setAttribute("src", fileObj.value);
+                    }
+                } else {
+                    alert("仅支持" + allowExtention + "为后缀名的文件!");
+                    fileObj.value = ""; //清空选中文件
+                    if (browserVersion.indexOf("MSIE") > -1) {
+                        fileObj.select();
+                        document.selection.clear();
+                    }
+                    fileObj.outerHTML = fileObj.outerHTML;
+                }
+                return fileObj.value;    //返回路径
+            }
+
+            function dateToStr(datetime){ 
+                var year = datetime.getFullYear();
+                var month = datetime.getMonth()+1;//js从0开始取 
+                var date = datetime.getDate(); 
+                var hour = datetime.getHours(); 
+                var minutes = datetime.getMinutes(); 
+                var second = datetime.getSeconds();
+                if(month<10){
+                    month = "0" + month;
+                }
+                if(date<10){
+                    date = "0" + date;
+                }
+                if(hour <10){
+                    hour = "0" + hour;
+                }
+                if(minutes <10){
+                    minutes = "0" + minutes;
+                }
+                if(second <10){
+                    second = "0" + second ;
+                }
+                var time = year+"-"+month+"-"+date+" "+hour+":"+minutes+":"+second; //格式2009-06-12 17:18:05
+                // alert(time);
+                return time;
+            }
+</script>

@@ -1,0 +1,215 @@
+
+*{
+	margin:0;
+	padding:0;
+	outline:none;
+	border:0
+}
+a{
+	text-decoration: none;
+}
+.all{
+	width: 100%;
+	margin:0px auto;
+	font-family:"微软雅黑";
+}
+body{
+	/*background-image: linear-gradient(to right, #007adf 0%, #00ecbc 100%);*/
+	background-color: #009efd;
+}
+/*设置网页背景图片*/
+#web_bg{
+  position:fixed;
+  top: 0;
+  left: 0;			/*前三句让div固定位置在最上方和最左方*/
+  width:100%;
+  height:100%;
+  min-width: 1000px;/*这三句是保证图片大小显示为100%并且屏幕宽度在1000px以内时，div的大小保持不变*/
+  z-index:-10;		/*目的是让整个div在HTML页面中各个层级的下方，正常情况下，第一个创建的层级z-index的值是0，所以如果我们这里写成-1也可以实现，不过这里写-10是确保整个div在最下面*/
+  zoom: 1;
+  background-color: #fff;
+  background-repeat: no-repeat;
+  background-size: cover;
+  -webkit-background-size: cover;
+  -o-background-size: cover;/*上面三句是一个意思，就是让图片随屏幕大小同步缩放，但是有部分可能会被裁切，不过不至于会露白，下面两句是为chrome和opera浏览器作兼容。*/
+  background-position: center 0;
+}
+/*顶部背景绘制*/
+#head{
+	margin: 0px auto;
+	box-shadow: 0px 0px 10px #888888;
+	background-image: linear-gradient(to left, #2af598 0%, #009efd 100%);
+	text-align:center;
+	width:100%;
+	height:50px;
+	box-shadow:-3px 2px 10px black;
+}
+/*顶部文字*/
+#title{
+	padding-left: 137px;
+	line-height: 50px;
+	font-size: 30px;
+}
+/*个人中心*/
+#myinfo{
+	float: right;
+	font-size: 20px;
+	margin-right: 30px;
+	margin-top: 20px;
+	color:#3d3d3d;
+}
+/*状态提示框绘制*/
+#status{
+	margin:20px auto;
+	width:250px;
+	height:90px;
+	background:url(../images/alpha2.png);
+	text-align:center;
+	box-shadow: 2px 2px 10px black;
+	border-radius:4px;
+}
+#status ul{
+	list-style:none; /* 去掉ul前面的符号 */
+    margin: 0px auto; /* 与外界元素的距离为0 */
+    padding: 0px; /* 与内部元素的距离为0 */
+    width: 210px;
+	height:25px;
+}
+#status ul li{
+	float:left;
+	margin-right:5px;
+	padding-top:4px;
+	width:65px;
+	height:23px;
+	font-size:15px;
+	color:white;
+	font-weight:bold;
+	border-radius:3px;
+}
+#tip{
+	margin-bottom: 15px;
+	padding-top:15px;
+	font-size:15px;
+	font-weight:bold;
+}
+#status1{
+	background-image: linear-gradient(to right, #ff0844 0%, #ffb199 100%);
+	box-shadow: 2px 2px  2px #888888;
+}
+#status2{
+	background-image:linear-gradient(60deg, #29323c 0%, #949697 100%);
+	box-shadow: 2px 2px  2px #888888;
+}
+#status0{
+	background-image:linear-gradient(to right, #0fd850 0%, #f9f047 100%);
+	box-shadow: 2px 2px  2px #888888;
+}
+
+
+.floor_num{margin-left: 60px;margin-top: 80px;}
+.floor_num span{}
+#floor{font-size: 30px;display: inline}
+.num{width: 70px;height: 30px;display:inline-block;text-align: center;line-height: 30px;margin-left: 30px;}
+.num:hover{background-color: pink;}
+#info{display: none;}
+
+
+/*每个座位的风格*/
+.seat_num{
+	width: 70px;
+	height: 30px;
+	box-shadow: 2px 2px 4px black;
+	border-radius:4px;
+	display:inline-block;
+	text-align: center;
+	line-height: 30px;
+	margin: 10px;
+}
+.seat_num:hover{
+	background-image:linear-gradient(to right, #f83600 0%, #f9d423 100%);
+
+}
+/*选择的座位号显示*/
+#seat_info{
+	font-size: 15px;
+	line-height: 35px;
+	border-radius: 15px;
+	margin: 0px auto;
+	width: 180px;
+	height: 35px;
+	box-shadow: 2px 2px 4px black;
+	background-image: linear-gradient(to right, #92fe9d 0%, #00c9ff 100%);
+}
+
+#seat_map{
+	font-size: 15px;
+	line-height: 35px;
+	border-radius: 15px;
+	margin: 0px auto;
+	width: 180px;
+	height: 35px;
+	box-shadow: 2px 2px 4px black;
+	background-image: linear-gradient(to right, #92fe9d 0%, #00c9ff 100%);
+}
+
+
+.seat_choose{margin-top: 30px;text-align: center}
+/*.seat_choose table{border: 1px solid red;}*/
+
+/*选择和取消按钮*/
+.button{
+	width: 60px;
+	height: 30px;
+	margin: 10px;
+}
+.submit input{
+	font-size: 20px;
+	width:150px;
+	height: 35px;
+	line-height: 35px;
+	border: none;
+	background-color: wheat;
+	box-shadow: 2px 2px 4px #888888;
+	transition: background 2s ease;
+}
+.submit a{
+	font-size: 20px;
+	display: inline-block;
+	width: 150px;
+	background-color: wheat;
+	height: 35px;
+	line-height: 35px;
+	color: black;
+	box-shadow: 2px 2px 4px #888888;
+	transition: background 2s ease;
+}
+.submit input:hover{
+	background-color: #00ff00
+}
+.submit a:hover{
+	background-color: #f52d40
+}
+.btn{
+	text-align: center;
+	font-family: "微软雅黑";
+}
+
+
+
+/*当窗口宽度小于600px的时候（手机访问）*/
+@media only screen and (max-width: 600px) {
+	#head{
+		height: 60px;
+	}
+	#title{
+		padding: 0px;
+		line-height: 40px;
+		font-size: 20px;
+	}
+	#myinfo{
+		float: none;
+		margin: 0px;
+		font-size: 15px;
+		color:#949697;
+	}
+}

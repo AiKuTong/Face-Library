@@ -1,0 +1,35 @@
+body{
+    background-color: #009efd;
+}
+.tips{
+    float: left;
+    height: 45px;
+    font-family: "微软雅黑";
+    font-size: 20px;
+}
+.form-control{
+    width: 65%;
+}
+.form label{
+    font-size: 20px;
+
+}
+.form{
+    margin: 5px auto;
+    width: 400px;
+    box-shadow: 2px 2px 4px #888888;
+}
+.btn{
+    width: 100px;
+    
+}
+.btn-all{
+    width: 205px;
+    margin: 0px auto;
+}
+@media only screen and (max-width: 600px) {
+    .form{
+        margin: 5px auto;
+        width: 90%;
+    }
+}

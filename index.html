@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>图书馆座位预约系统</title>
+	<link rel="shortcut icon" href="./favicon.ico" />
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+	<!--开头Logo以及文字-->
+    <div id="banner">
+      	<div id="down"><a href="./download.html" target="_blank">手机APP下载</a></div>
+ 		<div id="down"><a href="./Reservation-rules.html" target="_blank">座位预订规则</a></div>
+		<div id="logo"></div>
+		<span class="font-set">图书馆座位预约系统</span><br />
+    </div>
+	<!--中间部分内容-->
+    <div id="center" >
+		<!--中间的背景图片-->
+		<div id="bgimg"></div>
+		<form method="post" action="do_login.php" id="login">
+			<!--中间的登录框部分-->
+			<div id="login-window" >
+				<!--登录框标题-->
+				<div id="notict" style="width:270px;height:30px;color:red;margin:10px auto;text-align: center;">
+					<marquee direction=up  scrolldelay="10" scrollamount="1" loop="-1" behavior="scroll" hspace="20" vspace="10" onMouseOver="this.stop()" 
+					onMouseOut="this.start()" width="100%" height="20px">							 
+						<p>图书馆开放时间：上午7:30-12:00</p>
+						<p>下午13:00-17:30,晚上18:30-20:30</p>
+						<p>请同学们注意闭馆时间,及时离馆。</p>
+					</marquee>
+				</div>
+				<h2 id="title">登录界面</h2>
+				<!--登录表单div-->
+				<div class="login_form">
+					<!--帐号框div-->
+					<div class="login_user">
+						<input name="login_user" class="user" value="201612150216"type="text" placeholder="请输入学号" />
+					</div>
+					<!--密码框div-->
+					<div class="login_pwd">
+						<input name="login_pwd" type="password" class="pwd" value="123456" type="text" placeholder="请输入密码" />
+					</div>
+					<!--记住密码和注册div-->
+					<div class="login_help">
+						<label>
+				         <input name="login_remember" type="checkbox" />记住帐号
+				     	</label>
+						<span><a href="rec.html"> 注册</a></span>
+					</div>
+					<!--登陆按钮-->
+					<input type="submit" name="btn_Login" value="登 录" id="btn_Login" class="submit btn" />
+					<div id="faceid">
+						<a href="faceid.html">面部识别登录</a>
+					</div>
+					<script>
+						var file = document.querySelector('#file');
+						/*if (getIos()) {
+							file.removeAttribute("capture");
+						}*/
+						function getIos() {
+							var ua = navigator.userAgent.toLowerCase();
+							if (ua.match(/iPhone\sOS/i) == "iphone os") {
+								return true;
+							} else {
+								return false;
+							}
+						}
+					</script>
+				</div>
+			</div>
+		</form>
+	</div>
+  
+</body>
+</html>

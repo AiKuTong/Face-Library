@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<title>学号注册</title>
+	<link rel="shortcut icon" href="./favicon.ico" />
+  	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="./css/rec.css">
+	<link rel="stylesheet" href="./font/font-awesome-4.7.0/css/font-awesome.min.css">
+	<script src="./js/rec.js"></script>
+</head>
+<body>
+	<div class="contact" >
+			<form name="form2" action="upload_img.php" method="post" enctype="multipart/form-data" target="_blank">
+				<ul>
+					<li>
+						<label>人脸图片上传：</label>
+                      <p style="color:red;font-weight:bold;"><br>**重要的事情说三遍**</p>
+                      <p style="color:red;font-weight:bold;">**一定要是自己的证件照**</p>
+						<p style="color:red;font-weight:bold;">**上传文件请以自己的学号命名！**</p>
+						<p style="color:red;font-weight:bold;">**上传文件请以自己的学号命名！**</p>
+						<p style="color:red;font-weight:bold;">**上传文件请以自己的学号命名！**</p>
+						<div id="divPreview">
+							<img id="imgHeadPhoto" src="./images/noperson.jpg" style="width: 160px; height: 170px; border: solid 1px #d2e2e2;"alt="" />
+						</div>
+						<input  type="file" name="file" onchange="PreviewImage(this,'imgHeadPhoto','divPreview');" size="20" />
+						<input class="button"  type="submit" value="上传"/><p>注意：</p><p>此处可以上传也可以不上传
+						<br>   上传仅用于移动端人脸识别快速登录。</p>
+					</li>
+				</ul>
+			</form>
+		<form name="form1" method="post" action="do_rec.php" onsubmit="return checkSubmit();">
+			<ul>
+				<li>
+					<label>姓名：</label>
+					<input id="sname"  type="text" name="sname" placeholder="请输入姓名"  onblur="checkna()" required/><span class="tips" id="divname"></span>
+				</li>
+				<li>
+					<label>学号：</label>
+					<input id="snum" type="text" name="snum" placeholder="请输入学号"  onblur="checkNum()" onkeyup="value=value.replace(/[^\d]/g,'')" required/><span class="tips" id="divSnum"></span>
+				</li>
+				<li>
+					<label>密码：</label>
+					<input type="password" name="pwd" placeholder="请输入你的密码" onBlur="checkpsd1()" required/><span class="tips" id="divpassword1"></span>
+				</li>
+				<li>
+					<label>确认密码：</label>
+					<input type="password" name="pwd2" placeholder="请再次输入你的密码" onBlur="checkpsd2()" required/><span class="tips" id="divpassword2"></span>
+				</li>
+				<li>
+					<label>电子邮箱：</label>
+					<input type="text" name="email" placeholder="请输入你的邮箱" onBlur="checkmail()" required/><span class="tips" id="divmail"></span>
+				</li>
+			</ul>
+			<b class="btn"><input type="submit" class="button" value="注册"/>
+			<input type="reset" class="button" value="取消"/><a href="index.html" style="text-decoration: none;padding-left: 120px; color: black; "><i class="fa fa-sign-out"></i>返回首页</a></b>
+		</form>
+	</div>
+	<script type="text/javascript" color="0,0,0" opacity='0.7' zIndex="-2" count="150" src="//cdn.bootcss.com/canvas-nest.js/1.0.1/canvas-nest.min.js"></script>
+	<script type="text/javascript">
+        //js本地图片预览，兼容ie[6-9]、火狐、Chrome17+、Opera11+、Maxthon3
+        function PreviewImage(fileObj, imgPreviewId, divPreviewId) {
+            var allowExtention = ".jpg"; //允许上传文件的后缀名document.getElementById("hfAllowPicSuffix").value;
+            var extention = fileObj.value.substring(fileObj.value.lastIndexOf(".") + 1).toLowerCase();
+            var browserVersion = window.navigator.userAgent.toUpperCase();
+            if (allowExtention.indexOf(extention) > -1) {
+                if (fileObj.files) {//HTML5实现预览，兼容chrome、火狐7+等
+                    if (window.FileReader) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            document.getElementById(imgPreviewId).setAttribute("src", e.target.result);
+                        }
+                        reader.readAsDataURL(fileObj.files[0]);
+                    } else if (browserVersion.indexOf("SAFARI") > -1) {
+                        alert("不支持Safari6.0以下浏览器的图片预览!");
+                    }
+                } else if (browserVersion.indexOf("MSIE") > -1) {
+                    if (browserVersion.indexOf("MSIE 6") > -1) {//ie6
+                        document.getElementById(imgPreviewId).setAttribute("src", fileObj.value);
+                    } else {//ie[7-9]
+                        fileObj.select();
+                        if (browserVersion.indexOf("MSIE 9") > -1)
+                            fileObj.blur(); //不加上document.selection.createRange().text在ie9会拒绝访问
+                        var newPreview = document.getElementById(divPreviewId + "New");
+                        if (newPreview == null) {
+                            newPreview = document.createElement("div");
+                            newPreview.setAttribute("id", divPreviewId + "New");
+                            newPreview.style.width = document.getElementById(imgPreviewId).width + "px";
+                            newPreview.style.height = document.getElementById(imgPreviewId).height + "px";
+                            newPreview.style.border = "solid 1px #d2e2e2";
+                        }
+                        newPreview.style.filter = "progid:DXImageTransform.Microsoft.AlphaImageLoader(sizingMethod='scale',src='" + document.selection.createRange().text + "')";
+                        var tempDivPreview = document.getElementById(divPreviewId);
+                        tempDivPreview.parentNode.insertBefore(newPreview, tempDivPreview);
+                        tempDivPreview.style.display = "none";
+                    }
+                } else if (browserVersion.indexOf("FIREFOX") > -1) {//firefox
+                    var firefoxVersion = parseFloat(browserVersion.toLowerCase().match(/firefox\/([\d.]+)/)[1]);
+                    if (firefoxVersion < 7) {//firefox7以下版本
+                        document.getElementById(imgPreviewId).setAttribute("src", fileObj.files[0].getAsDataURL());
+                    } else {//firefox7.0+                    
+                        document.getElementById(imgPreviewId).setAttribute("src", window.URL.createObjectURL(fileObj.files[0]));
+                    }
+                } else {
+                    document.getElementById(imgPreviewId).setAttribute("src", fileObj.value);
+                }
+            } else {
+                alert("仅支持" + allowExtention + "为后缀名的文件!");
+                fileObj.value = ""; //清空选中文件
+                if (browserVersion.indexOf("MSIE") > -1) {
+                    fileObj.select();
+                    document.selection.clear();
+                }
+                fileObj.outerHTML = fileObj.outerHTML;
+            }
+            return fileObj.value;    //返回路径
+        }
+    </script>
+</body>
+</html>

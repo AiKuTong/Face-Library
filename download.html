@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh_CN">
+ 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="./favicon.ico" />
+    <title>App下载</title>
+</head>
+<style>
+    body {
+        font-family: 'Microsoft YaHei', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    }
+ 
+    body::before {
+        content: ' ';
+        position: fixed;
+        z-index: -1;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background: url('./images/down_app.png');
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+ 
+    .logo {
+        width: 80px;
+        height: 80px;
+        background: url('./images/app.png');
+        margin: 0 auto;
+        margin-top: calc(50% - 100px);
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+    #appname{
+        text-align: center;
+        font-weight: bold;
+        color: #fff;
+    }
+    @media screen and (min-width: 900px) {
+        body::before {
+             content: ' ';
+        position: fixed;
+        z-index: -1;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+            background: url('./images/down_app.png');
+            background-size: cover;
+        }
+ 
+        .logo {
+            margin-top: calc(10% - 10px);
+        }
+    }
+ 
+    .kana {
+        width: 10px;
+        margin: 0 auto;
+        margin-top: 10px;
+        display: block;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+ 
+    .update {
+        color: #fff;
+        margin: 0 auto;
+        margin-top: 10px;
+        display: block;
+        text-align: center;
+        font-weight: 100;
+        font-size: 14px;
+    }
+ 
+    #upcon{
+        width: 240px;
+        display: block;
+        font-weight: 100;
+        font-size: 14px;
+        color: #fff;
+        margin: 0 auto;
+        margin-top: 10px;
+        padding: 15px;
+        line-height: 25px;
+        background-color: rgba(245, 245, 245, 0.4);
+        border-radius: 20px;
+    }
+
+    .download-btn {
+        position: absolute;
+        left: 50%;
+        bottom: 44px;
+        display: block;
+        margin: 0 auto;
+        width: 220px;
+        margin-left: -110px;
+        text-decoration: none;
+        color: #656565;
+        border-radius: 50px;
+        background: #f4f4f4;
+        font-size: 20px;
+        padding: 15px 0;
+        opacity: .9;
+        text-align: center;
+        font-weight: bold;
+    }
+ 
+    .bq {
+        position: absolute;
+        bottom: 0;
+        font-size: 14px;
+        text-align: center;
+        left: 0;
+        right: 0;
+        color: #fff;
+    }
+</style>
+ 
+<body>
+<div class="logo">
+</div>
+<div id="appname">
+    <p>图书馆座位预订</p>
+</div>
+<p class="update">当前版本 v1.0.0 | 发布日期 2018-09-21.</p>
+
+<a id="upcon">本次更新内容： <br/>&nbsp;1.通过软件将网页封装成APP。<br/>&nbsp;2.优化用户操作体验,减少操作步骤。<br/>&nbsp;3.可以通过右上角菜单分享APP。<br/>&nbsp;4.应用内右滑手势即可开启功能菜单。<br/>&nbsp;5.IOS版本以及其他内容敬请期待...
+</a>
+
+<a href="./Library.apk" class="download-btn">Android下载</a>
+<p class="bq">鲁南大学图书馆 2018 Library.TongSir.CN</p>
+</body>
+</html>

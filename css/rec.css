@@ -1,0 +1,135 @@
+﻿body{
+	font:14px/28px "微软雅黑";
+	background-image: linear-gradient(to right, #2af598 0%, #009efd 100%);
+}
+.contact *:focus{outline :none;}
+.contact{
+	width: 700px;
+	height: auto;
+	background: linear-gradient(to left, #00c9ff, #92fe9d);
+	box-shadow: 2px 2px 8px #888888;
+	margin: 40px auto;
+	padding: 10px;
+}
+.contact ul {
+	width: 650px;
+	margin: 0 auto;
+}
+.contact ul li{
+	border-bottom: 1px solid #dfdfdf;
+	list-style: none;
+	padding: 12px;
+}
+.contact ul li label {
+	width: 120px;
+	display: inline-block;
+	float: left;
+}
+.contact ul li input[type=text],.contact ul li input[type=password]{
+	width: 220px;
+	height: 25px;
+	border :1px solid #aaa;
+	padding: 3px 8px;
+	border-radius: 5px;
+}
+.contact ul li input:focus{
+	border-color: #c00;	
+}
+.contact ul li input[type=text]{
+	transition: padding .25s;
+	-o-transition: padding  .25s;
+	-moz-transition: padding  .25s;
+	-webkit-transition: padding  .25s;
+}
+.contact ul li input[type=password]{
+	transition: padding  .25s;
+	-o-transition: padding  .25s;
+	-moz-transition: padding  .25s;
+	-webkit-transition: padding  .25s;
+}
+.contact ul li input:focus{
+	padding-right: 70px;
+}
+.btn{
+	position: relative;
+	left: 200px;
+}
+.tips{
+	color: rgba(0, 0, 0, 0.5);
+	padding-left: 10px;
+}
+.tips_true,.tips_false{
+	padding-left: 10px;
+}
+.tips_true{
+	color: green;
+}
+.tips_false{
+	color: red;
+}
+.button{
+	width: 80px;
+	height: 30px;
+	margin-top: 7px;
+	margin-left: 50px;
+	border: 0px;
+	border-radius: 5px;
+	background: linear-gradient(to right, #EAECC6, #2BC0E4);
+	box-shadow: 2px 2px 4px #888888;
+}
+
+/*当窗口宽度小于500px的时候（手机访问）*/
+@media only screen and (max-width: 500px) {
+	.contact{
+		width: 300px;
+		height: auto;
+		background: linear-gradient(to left, #00c9ff, #92fe9d);
+		box-shadow: 2px 2px 8px #888888;
+		margin: 40px auto;
+		padding: 10px;
+	}
+	.contact ul {
+		width: 250px;
+		margin: 0 auto;
+	}
+	.contact ul li{
+		border-bottom: 1px solid #dfdfdf;
+		list-style: none;
+		padding: 12px;
+	}
+	.contact ul li label {
+		width: 70px;
+		display: inline-block;
+		float: left;
+	}
+	.contact ul li input[type=text],.contact ul li input[type=password]{
+		width: 130px;
+		height: 25px;
+		border :1px solid #aaa;
+		padding: 3px 8px;
+		border-radius: 5px;
+	}
+	.contact ul li input:focus{
+		padding-right: none;
+	}
+	.tips{
+		color: rgba(0, 0, 0, 0.5);
+		width: 300px;
+		padding-left: 25px;
+		text-align: center;
+	}
+	.btn{
+		position: relative;
+		left: 5px;
+	}
+	.button{
+		width: 80px;
+		height: 30px;
+		margin-top: 7px;
+		margin-left: 50px;
+		border: 0px;
+		border-radius: 5px;
+		background: linear-gradient(to right, #EAECC6, #2BC0E4);
+		box-shadow: 2px 2px 4px #888888;
+	}
+}
