@@ -62,9 +62,9 @@
 <?php 
   require 'compress-img.php';
     require_once __DIR__ . '/faceid/AipFace.php';
-    const APP_ID = '14335899';
-    const API_KEY = 'z9cfhRjcMEL0cF2lk0wSArm6';
-    const SECRET_KEY = 'gZtzVLubYXGvoOFFvthd0XxQqbDlBwY2';
+    const APP_ID = '你的id';
+    const API_KEY = '你的key';
+    const SECRET_KEY = '你的秘钥';
 include ('config.php'); 
 if(!isset($_SESSION)){
     session_start();
