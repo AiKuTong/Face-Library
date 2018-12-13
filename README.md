@@ -33,3 +33,11 @@
 作者QQ 1004833686     
 Email ：admin@tongsir.cn   
 作者QQ 4722957      
+使用方法  
+
+导入数据库  
+
+
+check_img.php  里面 填入自己的百度人脸识别的api 的 id和秘钥 就可以使用   
+
+
