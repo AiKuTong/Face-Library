@@ -24,7 +24,10 @@
 5、 运用照片新鲜度算法避免冒用旧照片的可能性   
 
 作品演示网址：http://library.tongsir.cn/   
-![image](https://ww1.sinaimg.cn/large/005BYqpgly1fxwzqpdvg6j31400u01eu.jpg)
+截图演示
+
+https://ww1.sinaimg.cn/large/005BYqpgly1fxwzqpdvg6j31400u01eu.jpg
+
 
 
 
