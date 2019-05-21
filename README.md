@@ -26,7 +26,8 @@
 作品演示网址：http://library.tongsir.cn/   
 截图演示
 
-https://ww1.sinaimg.cn/large/005BYqpgly1fxwzqpdvg6j31400u01eu.jpg
+https://ws3.sinaimg.cn/large/005BYqpgly1fxwzqpdvg6j31400u01eu.jpg?referrer=https://cdn.sinaimg.cn.52ecy.cn
+
 
 
 
